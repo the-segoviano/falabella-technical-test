@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		51BB1B1D275AA05D0076D6E8 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B0E275AA05D0076D6E8 /* Helpers.swift */; };
+		51BB1B1E275AA05D0076D6E8 /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B10275AA05D0076D6E8 /* String+ext.swift */; };
+		51BB1B1F275AA05D0076D6E8 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B11275AA05D0076D6E8 /* UIColor+ext.swift */; };
+		51BB1B20275AA05D0076D6E8 /* UIViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B12275AA05D0076D6E8 /* UIViewController+ext.swift */; };
+		51BB1B21275AA05D0076D6E8 /* UIView+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B13275AA05D0076D6E8 /* UIView+ext.swift */; };
+		51BB1B22275AA05D0076D6E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B15275AA05D0076D6E8 /* Constants.swift */; };
+		51BB1B23275AA05D0076D6E8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B16275AA05D0076D6E8 /* Alert.swift */; };
+		51BB1B24275AA05D0076D6E8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B17275AA05D0076D6E8 /* CustomTextField.swift */; };
+		51BB1B25275AA05D0076D6E8 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B18275AA05D0076D6E8 /* CustomFont.swift */; };
+		51BB1B26275AA05D0076D6E8 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B19275AA05D0076D6E8 /* BaseButton.swift */; };
+		51BB1B27275AA05D0076D6E8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B1B275AA05D0076D6E8 /* BaseViewController.swift */; };
+		51BB1B28275AA05D0076D6E8 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B1C275AA05D0076D6E8 /* BaseTableViewCell.swift */; };
+		51BB1B2A275AA3540076D6E8 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B29275AA3540076D6E8 /* FavoritesViewController.swift */; };
+		51BB1B2C275AA3770076D6E8 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B2B275AA3770076D6E8 /* HomeTabBarController.swift */; };
 		C63DC6E7275A93F400C21795 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63DC6E6275A93F400C21795 /* AppDelegate.swift */; };
 		C63DC6E9275A93F400C21795 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63DC6E8275A93F400C21795 /* SceneDelegate.swift */; };
 		C63DC6EB275A93F400C21795 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63DC6EA275A93F400C21795 /* ViewController.swift */; };
@@ -15,6 +29,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		51BB1B0E275AA05D0076D6E8 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		51BB1B10275AA05D0076D6E8 /* String+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
+		51BB1B11275AA05D0076D6E8 /* UIColor+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
+		51BB1B12275AA05D0076D6E8 /* UIViewController+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ext.swift"; sourceTree = "<group>"; };
+		51BB1B13275AA05D0076D6E8 /* UIView+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ext.swift"; sourceTree = "<group>"; };
+		51BB1B15275AA05D0076D6E8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		51BB1B16275AA05D0076D6E8 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		51BB1B17275AA05D0076D6E8 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		51BB1B18275AA05D0076D6E8 /* CustomFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
+		51BB1B19275AA05D0076D6E8 /* BaseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		51BB1B1B275AA05D0076D6E8 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		51BB1B1C275AA05D0076D6E8 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		51BB1B29275AA3540076D6E8 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		51BB1B2B275AA3770076D6E8 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		C63DC6E3275A93F400C21795 /* Falabella Technical Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Falabella Technical Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C63DC6E6275A93F400C21795 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C63DC6E8275A93F400C21795 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +63,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		51BB1B0D275AA0170076D6E8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				51BB1B1A275AA05D0076D6E8 /* BaseViews */,
+				51BB1B0F275AA05D0076D6E8 /* Extensions */,
+				51BB1B0E275AA05D0076D6E8 /* Helpers.swift */,
+				51BB1B14275AA05D0076D6E8 /* Utils */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		51BB1B0F275AA05D0076D6E8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				51BB1B10275AA05D0076D6E8 /* String+ext.swift */,
+				51BB1B11275AA05D0076D6E8 /* UIColor+ext.swift */,
+				51BB1B12275AA05D0076D6E8 /* UIViewController+ext.swift */,
+				51BB1B13275AA05D0076D6E8 /* UIView+ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		51BB1B14275AA05D0076D6E8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				51BB1B15275AA05D0076D6E8 /* Constants.swift */,
+				51BB1B16275AA05D0076D6E8 /* Alert.swift */,
+				51BB1B17275AA05D0076D6E8 /* CustomTextField.swift */,
+				51BB1B18275AA05D0076D6E8 /* CustomFont.swift */,
+				51BB1B19275AA05D0076D6E8 /* BaseButton.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		51BB1B1A275AA05D0076D6E8 /* BaseViews */ = {
+			isa = PBXGroup;
+			children = (
+				51BB1B1B275AA05D0076D6E8 /* BaseViewController.swift */,
+				51BB1B1C275AA05D0076D6E8 /* BaseTableViewCell.swift */,
+			);
+			path = BaseViews;
+			sourceTree = "<group>";
+		};
 		C63DC6DA275A93F400C21795 = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +125,7 @@
 		C63DC6E5275A93F400C21795 /* Falabella Technical Test */ = {
 			isa = PBXGroup;
 			children = (
+				51BB1B0D275AA0170076D6E8 /* Resources */,
 				C6633096275A9C94004858D4 /* App */,
 				C6633095275A9C85004858D4 /* Delegates */,
 				C6633093275A9C69004858D4 /* Supporting Files */,
@@ -84,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				C63DC6EA275A93F400C21795 /* ViewController.swift */,
+				51BB1B29275AA3540076D6E8 /* FavoritesViewController.swift */,
+				51BB1B2B275AA3770076D6E8 /* HomeTabBarController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -157,9 +231,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51BB1B26275AA05D0076D6E8 /* BaseButton.swift in Sources */,
+				51BB1B21275AA05D0076D6E8 /* UIView+ext.swift in Sources */,
+				51BB1B24275AA05D0076D6E8 /* CustomTextField.swift in Sources */,
+				51BB1B1E275AA05D0076D6E8 /* String+ext.swift in Sources */,
 				C63DC6EB275A93F400C21795 /* ViewController.swift in Sources */,
+				51BB1B27275AA05D0076D6E8 /* BaseViewController.swift in Sources */,
+				51BB1B20275AA05D0076D6E8 /* UIViewController+ext.swift in Sources */,
 				C63DC6E7275A93F400C21795 /* AppDelegate.swift in Sources */,
+				51BB1B2C275AA3770076D6E8 /* HomeTabBarController.swift in Sources */,
 				C63DC6E9275A93F400C21795 /* SceneDelegate.swift in Sources */,
+				51BB1B1D275AA05D0076D6E8 /* Helpers.swift in Sources */,
+				51BB1B2A275AA3540076D6E8 /* FavoritesViewController.swift in Sources */,
+				51BB1B1F275AA05D0076D6E8 /* UIColor+ext.swift in Sources */,
+				51BB1B25275AA05D0076D6E8 /* CustomFont.swift in Sources */,
+				51BB1B23275AA05D0076D6E8 /* Alert.swift in Sources */,
+				51BB1B28275AA05D0076D6E8 /* BaseTableViewCell.swift in Sources */,
+				51BB1B22275AA05D0076D6E8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +387,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Falabella Technical Test/Info.plist";
+				DEVELOPMENT_TEAM = VY93XGV7U7;
+				INFOPLIST_FILE = "$(SRCROOT)/Falabella Technical Test/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -318,7 +407,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Falabella Technical Test/Info.plist";
+				DEVELOPMENT_TEAM = VY93XGV7U7;
+				INFOPLIST_FILE = "$(SRCROOT)/Falabella Technical Test/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
