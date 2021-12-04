@@ -22,6 +22,13 @@
 		51BB1B2E275AE2340076D6E8 /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B2D275AE2340076D6E8 /* HeaderCollectionViewCell.swift */; };
 		51BB1B30275AE2470076D6E8 /* FooterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B2F275AE2470076D6E8 /* FooterCollectionViewCell.swift */; };
 		51BB1B32275AE53B0076D6E8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B31275AE53B0076D6E8 /* BaseCollectionViewCell.swift */; };
+		C621CCCA275C0E7500F14A4B /* RequestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621CCC4275C0E7400F14A4B /* RequestErrors.swift */; };
+		C621CCCB275C0E7500F14A4B /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621CCC5275C0E7400F14A4B /* HTTPMethod.swift */; };
+		C621CCCC275C0E7500F14A4B /* HTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621CCC6275C0E7400F14A4B /* HTTPRequestHandler.swift */; };
+		C621CCCD275C0E7500F14A4B /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621CCC7275C0E7400F14A4B /* RequestManager.swift */; };
+		C621CCCE275C0E7500F14A4B /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621CCC8275C0E7500F14A4B /* ErrorHandler.swift */; };
+		C621CCCF275C0E7500F14A4B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621CCC9275C0E7500F14A4B /* Endpoint.swift */; };
+		C621CCD3275C0F4F00F14A4B /* FavoritesResponseElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621CCD2275C0F4F00F14A4B /* FavoritesResponseElement.swift */; };
 		C63DC6E7275A93F400C21795 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63DC6E6275A93F400C21795 /* AppDelegate.swift */; };
 		C63DC6E9275A93F400C21795 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63DC6E8275A93F400C21795 /* SceneDelegate.swift */; };
 		C63DC6EB275A93F400C21795 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63DC6EA275A93F400C21795 /* ViewController.swift */; };
@@ -45,6 +52,13 @@
 		51BB1B2D275AE2340076D6E8 /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		51BB1B2F275AE2470076D6E8 /* FooterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCollectionViewCell.swift; sourceTree = "<group>"; };
 		51BB1B31275AE53B0076D6E8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		C621CCC4275C0E7400F14A4B /* RequestErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestErrors.swift; sourceTree = "<group>"; };
+		C621CCC5275C0E7400F14A4B /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		C621CCC6275C0E7400F14A4B /* HTTPRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestHandler.swift; sourceTree = "<group>"; };
+		C621CCC7275C0E7400F14A4B /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		C621CCC8275C0E7500F14A4B /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		C621CCC9275C0E7500F14A4B /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		C621CCD2275C0F4F00F14A4B /* FavoritesResponseElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesResponseElement.swift; sourceTree = "<group>"; };
 		C63DC6E3275A93F400C21795 /* Falabella Technical Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Falabella Technical Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C63DC6E6275A93F400C21795 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C63DC6E8275A93F400C21795 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +82,7 @@
 		51BB1B0D275AA0170076D6E8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C621CCC3275C0E6800F14A4B /* Networking */,
 				51BB1B1A275AA05D0076D6E8 /* BaseViews */,
 				51BB1B0F275AA05D0076D6E8 /* Extensions */,
 				51BB1B0E275AA05D0076D6E8 /* Helpers.swift */,
@@ -107,6 +122,28 @@
 				51BB1B31275AE53B0076D6E8 /* BaseCollectionViewCell.swift */,
 			);
 			path = BaseViews;
+			sourceTree = "<group>";
+		};
+		C621CCC3275C0E6800F14A4B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C621CCD1275C0F2C00F14A4B /* Models */,
+				C621CCC9275C0E7500F14A4B /* Endpoint.swift */,
+				C621CCC8275C0E7500F14A4B /* ErrorHandler.swift */,
+				C621CCC5275C0E7400F14A4B /* HTTPMethod.swift */,
+				C621CCC6275C0E7400F14A4B /* HTTPRequestHandler.swift */,
+				C621CCC4275C0E7400F14A4B /* RequestErrors.swift */,
+				C621CCC7275C0E7400F14A4B /* RequestManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C621CCD1275C0F2C00F14A4B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C621CCD2275C0F4F00F14A4B /* FavoritesResponseElement.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C63DC6DA275A93F400C21795 = {
@@ -236,19 +273,26 @@
 			files = (
 				51BB1B30275AE2470076D6E8 /* FooterCollectionViewCell.swift in Sources */,
 				51BB1B26275AA05D0076D6E8 /* BaseButton.swift in Sources */,
+				C621CCD3275C0F4F00F14A4B /* FavoritesResponseElement.swift in Sources */,
 				51BB1B21275AA05D0076D6E8 /* UIView+ext.swift in Sources */,
 				51BB1B24275AA05D0076D6E8 /* CustomTextField.swift in Sources */,
 				51BB1B1E275AA05D0076D6E8 /* String+ext.swift in Sources */,
 				51BB1B32275AE53B0076D6E8 /* BaseCollectionViewCell.swift in Sources */,
 				C63DC6EB275A93F400C21795 /* ViewController.swift in Sources */,
+				C621CCCD275C0E7500F14A4B /* RequestManager.swift in Sources */,
 				51BB1B20275AA05D0076D6E8 /* UIViewController+ext.swift in Sources */,
+				C621CCCB275C0E7500F14A4B /* HTTPMethod.swift in Sources */,
+				C621CCCF275C0E7500F14A4B /* Endpoint.swift in Sources */,
+				C621CCCE275C0E7500F14A4B /* ErrorHandler.swift in Sources */,
 				C63DC6E7275A93F400C21795 /* AppDelegate.swift in Sources */,
 				51BB1B2C275AA3770076D6E8 /* HomeTabBarController.swift in Sources */,
 				51BB1B2E275AE2340076D6E8 /* HeaderCollectionViewCell.swift in Sources */,
 				C63DC6E9275A93F400C21795 /* SceneDelegate.swift in Sources */,
 				51BB1B1D275AA05D0076D6E8 /* Helpers.swift in Sources */,
 				51BB1B2A275AA3540076D6E8 /* FavoritesViewController.swift in Sources */,
+				C621CCCA275C0E7500F14A4B /* RequestErrors.swift in Sources */,
 				51BB1B1F275AA05D0076D6E8 /* UIColor+ext.swift in Sources */,
+				C621CCCC275C0E7500F14A4B /* HTTPRequestHandler.swift in Sources */,
 				51BB1B25275AA05D0076D6E8 /* CustomFont.swift in Sources */,
 				51BB1B23275AA05D0076D6E8 /* Alert.swift in Sources */,
 				51BB1B22275AA05D0076D6E8 /* Constants.swift in Sources */,

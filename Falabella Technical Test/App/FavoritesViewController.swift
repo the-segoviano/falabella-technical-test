@@ -46,14 +46,15 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    /*
-    func fetchCartelera() {
-        RequestManager.fetchCartelera(reference: self) { [weak self] result in
+    func fetchCollections() {
+        RequestManager.fetchCollections(reference: self) { [weak self] result in
+            guard let strongSelf = self else { return }
+            
             switch result {
-            case .success(let carteleraResponse):
+            case .success(let favoritesResponse):
                 DispatchQueue.main.async {
                     
-                    print(" TERMINA carteleraResponse ", carteleraResponse, "\n")
+                    print(" TERMINA favoritesResponse ", favoritesResponse, "\n")
                     
                 }
             case .failure(let error):
@@ -61,15 +62,14 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
                     print(" Error Found: ", error.localizedDescription)
                 }
             }
-            
         }
-    }*/
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // fetchCartelera()
+        fetchCollections()
         
     }
     
