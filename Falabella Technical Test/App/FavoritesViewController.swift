@@ -34,6 +34,8 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: Constants.IdForCell.genericCell)
         self.collectionView.register(HeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Constants.IdForCell.customHeaderCell)
         self.collectionView.register(FooterCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Constants.IdForCell.customFooterCell)
+        self.collectionView.register(ProductCell.self, forCellWithReuseIdentifier: Constants.IdForCell.productCell)
+        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.backgroundColor = .collectionViewBackground
@@ -115,13 +117,16 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             
         case .allCollections:
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.IdForCell.genericCell, for: indexPath)
-            cell.backgroundColor = .lightGray
-            return cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.IdForCell.productCell, for: indexPath)
+            
+            if let cell = cell as? ProductCell {
+                cell.setupCell()
+                return cell
+            }
             
         }
         
-        // return UICollectionViewCell()
+        return UICollectionViewCell()
     }
     
     
@@ -161,21 +166,21 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
         
         case UICollectionView.elementKindSectionHeader:
             
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.IdForCell.customHeaderCell, for: indexPath)
+            let headerView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.IdForCell.customHeaderCell, for: indexPath)
             headerView.backgroundColor = UIColor.collectionViewBackground
             //headerView.releaseView()
             
             switch FavoriteSections.getSection(indexPath.section) {
             case .userCollections:
                 
-                let titleLabel = UILabel()
+                let titleLabel: UILabel = UILabel()
                 titleLabel.translatesAutoresizingMaskIntoConstraints = false
-                titleLabel.text = "Favoritos"
-                titleLabel.font = CustomFont.getBoldFont(withSize: 16)
+                titleLabel.text = Constants.Strings.titleFavSection
+                titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
                 
-                let addButton = UIButton(type: .custom)
+                let addButton: UIButton = UIButton(type: .custom)
                 addButton.translatesAutoresizingMaskIntoConstraints = false
-                addButton.setImage(UIImage(named: "add"), for: .normal)
+                addButton.setImage(UIImage(named: Constants.ImageName.add), for: .normal)
                 
                 headerView.addSubview(titleLabel)
                 headerView.addSubview(addButton)
@@ -192,7 +197,7 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
                 ])
                 
             case .allCollections:
-                let titleLabel = UILabel()
+                let titleLabel: UILabel = UILabel()
                 titleLabel.translatesAutoresizingMaskIntoConstraints = false
                 titleLabel.text = "Todos mis favoritos (16)"
                 titleLabel.font = CustomFont.getBoldFont(withSize: 16)
@@ -208,7 +213,7 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             
         case UICollectionView.elementKindSectionFooter:
             
-            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.IdForCell.customFooterCell, for: indexPath)
+            let footerView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.IdForCell.customFooterCell, for: indexPath)
             footerView.backgroundColor = UIColor.white
             //footerView.releaseView()
             return footerView
@@ -252,28 +257,36 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
 
 
 
-class HeaderCollectionViewCell: UICollectionReusableView {
+class ProductCell: BaseCollectionViewCell {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
+    let imageProduct: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "ex-product")
+        return imageView
+    }()
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    func setupCell() {
+        addSubview(imageProduct)
+        
+        NSLayoutConstraint.activate([
+            imageProduct.widthAnchor.constraint(equalTo: widthAnchor),
+            imageProduct.heightAnchor.constraint(equalTo: heightAnchor),
+            imageProduct.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageProduct.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
         
     }
     
 }
 
-class FooterCollectionViewCell: UICollectionReusableView {
+
+
+class UserCollectionCell: BaseCollectionViewCell {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
+    func setupCell() {
+        //
     }
     
 }

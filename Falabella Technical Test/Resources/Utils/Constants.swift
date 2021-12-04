@@ -12,10 +12,9 @@ struct Constants {
     
     struct Strings {
         static let titleApp = "Falabella App"
-        static let ok = "OK"
-        static let accept = "Accept"
-        static let cancel = "Cancel"
-        static let close = "Close"
+        static let titleFavSection = "Favoritos"
+        static let ok = "ok"
+        
     }
     
     
@@ -30,13 +29,15 @@ struct Constants {
     
     
     struct ImageName {
-        static let logo: String = "logo"
+        static let add: String = "add"
     }
     
     struct IdForCell {
         static let genericCell: String = "GenericCell"
         static let customHeaderCell = "customHeaderCell"
         static let customFooterCell: String = "customFooterCell"
+        static let productCell: String = "ProductCell"
+        
         
     }
     
