@@ -25,6 +25,8 @@ struct Constants {
         static let trailingMar: CGFloat = -16.0 // Or Right Margin
         static let padding: CGFloat = 8.0
         static let cornerRadius: CGFloat = 15.0
+        static let sizeProductImage: CGFloat = 30.0
+        static let sizeIconHeart: CGFloat = 24.0
     }
     
     
