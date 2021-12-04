@@ -35,6 +35,8 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
         self.collectionView.register(HeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Constants.IdForCell.customHeaderCell)
         self.collectionView.register(FooterCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Constants.IdForCell.customFooterCell)
         self.collectionView.register(ProductCell.self, forCellWithReuseIdentifier: Constants.IdForCell.productCell)
+        self.collectionView.register(UserCollectionCell.self, forCellWithReuseIdentifier: Constants.IdForCell.userCollectionCell)
+        
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -98,8 +100,16 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let wtCell: CGFloat = (view.frame.width/2) - 10
-        return CGSize.init(width: wtCell, height: wtCell)
+        switch FavoriteSections.getSection(indexPath.section) {
+        case .userCollections:
+            let wtCell: CGFloat = (view.frame.width/2) - 10
+            return CGSize.init(width: wtCell, height: 178)
+            
+        case .allCollections:
+            let wtCell: CGFloat = (view.frame.width/2) - 10
+            return CGSize.init(width: wtCell, height: wtCell)
+        }
+        
     }
     
     //
@@ -111,14 +121,15 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             
         case .userCollections:
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.IdForCell.genericCell, for: indexPath)
-            cell.backgroundColor = .pinkishGrey
-            return cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.IdForCell.userCollectionCell, for: indexPath)
+            if let cell = cell as? UserCollectionCell {
+                cell.setupCell()
+                return cell
+            }
             
         case .allCollections:
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.IdForCell.productCell, for: indexPath)
-            
             if let cell = cell as? ProductCell {
                 cell.setupCell()
                 return cell
@@ -168,7 +179,7 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             
             let headerView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.IdForCell.customHeaderCell, for: indexPath)
             headerView.backgroundColor = UIColor.collectionViewBackground
-            //headerView.releaseView()
+            headerView.removeViews()
             
             switch FavoriteSections.getSection(indexPath.section) {
             case .userCollections:
@@ -215,7 +226,7 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             
             let footerView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.IdForCell.customFooterCell, for: indexPath)
             footerView.backgroundColor = UIColor.collectionViewBackground
-            //footerView.releaseView()
+            footerView.removeViews()
             return footerView
             
         default: return UICollectionReusableView()
@@ -317,7 +328,7 @@ class ProductCell: BaseCollectionViewCell {
             icfavOn.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         
-    }
+    } // [END] setupCell
     
     fileprivate func getImageByName(withName name: String,
                                     contentMode: UIView.ContentMode = .scaleAspectFill) -> UIImageView
@@ -337,8 +348,99 @@ class ProductCell: BaseCollectionViewCell {
 
 class UserCollectionCell: BaseCollectionViewCell {
     
+    var imgPreview1: UIImageView!
+    var imgPreview2: UIImageView!
+    var imgPreview3: UIImageView!
+    
+    lazy var nameCollectionLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Collection 1"
+        return label
+    }()
+    
+    lazy var totalItemsInCollectionLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "11"
+        label.textColor = .pinkishGrey
+        return label
+    }()
+    
     func setupCell() {
-        //
+        backgroundColor = .white
+        layer.cornerRadius = Constants.Value.cornerRadius
+        
+        let containerPreviews: UIView = UIView()
+        containerPreviews.translatesAutoresizingMaskIntoConstraints = false
+        containerPreviews.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        containerPreviews.layer.cornerRadius = Constants.Value.cornerRadius
+        
+        imgPreview1 = getImageByName(withName: "ex-preview")
+        imgPreview2 = getImageByName(withName: "ex-preview")
+        imgPreview3 = getImageByName(withName: "ex-preview")
+        
+        addSubview(containerPreviews)
+        
+        addSubview(nameCollectionLabel)
+        addSubview(totalItemsInCollectionLabel)
+        
+        containerPreviews.addSubview(imgPreview1)
+        containerPreviews.addSubview(imgPreview2)
+        containerPreviews.addSubview(imgPreview3)
+        
+        let wtCell = (contentView.frame.width/2) - 10
+        var sizePreview1:CGFloat = 100
+        var sizePreview2and:CGFloat = 46
+        
+        if wtCell < 174 {
+            sizePreview1 = 85
+            sizePreview2and = 38
+        }
+        
+        NSLayoutConstraint.activate([
+            containerPreviews.widthAnchor.constraint(equalTo: widthAnchor),
+            containerPreviews.heightAnchor.constraint(equalToConstant: 120),
+            containerPreviews.topAnchor.constraint(equalTo: topAnchor),
+            
+            // Labels
+            totalItemsInCollectionLabel.heightAnchor.constraint(equalToConstant: 22),
+            totalItemsInCollectionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            totalItemsInCollectionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            nameCollectionLabel.heightAnchor.constraint(equalToConstant: 24),
+            nameCollectionLabel.bottomAnchor.constraint(equalTo: totalItemsInCollectionLabel.topAnchor),
+            nameCollectionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            
+            // Previews images
+            imgPreview1.widthAnchor.constraint(equalToConstant: sizePreview1),
+            imgPreview1.heightAnchor.constraint(equalToConstant: sizePreview1),
+            imgPreview1.topAnchor.constraint(equalTo: containerPreviews.topAnchor, constant: 8),
+            imgPreview1.leadingAnchor.constraint(equalTo: containerPreviews.leadingAnchor, constant: 8),
+            
+            imgPreview2.widthAnchor.constraint(equalToConstant: sizePreview2and),
+            imgPreview2.heightAnchor.constraint(equalToConstant: sizePreview2and),
+            imgPreview2.topAnchor.constraint(equalTo: containerPreviews.topAnchor, constant: 8),
+            imgPreview2.trailingAnchor.constraint(equalTo: containerPreviews.trailingAnchor, constant: -8),
+            
+            imgPreview3.widthAnchor.constraint(equalToConstant: sizePreview2and),
+            imgPreview3.heightAnchor.constraint(equalToConstant: sizePreview2and),
+            imgPreview3.topAnchor.constraint(equalTo: imgPreview2.bottomAnchor, constant: 8),
+            imgPreview3.trailingAnchor.constraint(equalTo: containerPreviews.trailingAnchor, constant: -8)
+            
+        ])
+        
+    } // [END] setupCell
+    
+    fileprivate func getImageByName(withName name: String,
+                                    contentMode: UIView.ContentMode = .scaleAspectFill) -> UIImageView
+    {
+        let imageView: UIImageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = contentMode
+        imageView.image = UIImage(named: name)
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 5
+        return imageView
     }
     
 }

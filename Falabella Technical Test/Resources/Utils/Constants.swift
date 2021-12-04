@@ -39,6 +39,7 @@ struct Constants {
         static let customHeaderCell = "customHeaderCell"
         static let customFooterCell: String = "customFooterCell"
         static let productCell: String = "ProductCell"
+        static let userCollectionCell: String = "UserCollectionCell"
         
         
     }
