@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		514828D7275C3D1600371831 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514828D6275C3D1600371831 /* ProductCell.swift */; };
+		514828D9275C3D7600371831 /* UserCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514828D8275C3D7600371831 /* UserCollectionCell.swift */; };
+		514828DB275E7C5600371831 /* UIImageView+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514828DA275E7C5600371831 /* UIImageView+ext.swift */; };
 		51BB1B1D275AA05D0076D6E8 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B0E275AA05D0076D6E8 /* Helpers.swift */; };
 		51BB1B1E275AA05D0076D6E8 /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B10275AA05D0076D6E8 /* String+ext.swift */; };
 		51BB1B1F275AA05D0076D6E8 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B11275AA05D0076D6E8 /* UIColor+ext.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		514828D6275C3D1600371831 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		514828D8275C3D7600371831 /* UserCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionCell.swift; sourceTree = "<group>"; };
+		514828DA275E7C5600371831 /* UIImageView+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ext.swift"; sourceTree = "<group>"; };
 		51BB1B0E275AA05D0076D6E8 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		51BB1B10275AA05D0076D6E8 /* String+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
 		51BB1B11275AA05D0076D6E8 /* UIColor+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
@@ -85,7 +91,6 @@
 				C621CCC3275C0E6800F14A4B /* Networking */,
 				51BB1B1A275AA05D0076D6E8 /* BaseViews */,
 				51BB1B0F275AA05D0076D6E8 /* Extensions */,
-				51BB1B0E275AA05D0076D6E8 /* Helpers.swift */,
 				51BB1B14275AA05D0076D6E8 /* Utils */,
 			);
 			path = Resources;
@@ -98,6 +103,7 @@
 				51BB1B11275AA05D0076D6E8 /* UIColor+ext.swift */,
 				51BB1B12275AA05D0076D6E8 /* UIViewController+ext.swift */,
 				51BB1B13275AA05D0076D6E8 /* UIView+ext.swift */,
+				514828DA275E7C5600371831 /* UIImageView+ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -105,6 +111,7 @@
 		51BB1B14275AA05D0076D6E8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				51BB1B0E275AA05D0076D6E8 /* Helpers.swift */,
 				51BB1B15275AA05D0076D6E8 /* Constants.swift */,
 				51BB1B16275AA05D0076D6E8 /* Alert.swift */,
 				51BB1B17275AA05D0076D6E8 /* CustomTextField.swift */,
@@ -198,6 +205,8 @@
 				C63DC6EA275A93F400C21795 /* ViewController.swift */,
 				51BB1B29275AA3540076D6E8 /* FavoritesViewController.swift */,
 				51BB1B2B275AA3770076D6E8 /* HomeTabBarController.swift */,
+				514828D6275C3D1600371831 /* ProductCell.swift */,
+				514828D8275C3D7600371831 /* UserCollectionCell.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -286,9 +295,12 @@
 				C621CCCE275C0E7500F14A4B /* ErrorHandler.swift in Sources */,
 				C63DC6E7275A93F400C21795 /* AppDelegate.swift in Sources */,
 				51BB1B2C275AA3770076D6E8 /* HomeTabBarController.swift in Sources */,
+				514828D9275C3D7600371831 /* UserCollectionCell.swift in Sources */,
 				51BB1B2E275AE2340076D6E8 /* HeaderCollectionViewCell.swift in Sources */,
 				C63DC6E9275A93F400C21795 /* SceneDelegate.swift in Sources */,
+				514828D7275C3D1600371831 /* ProductCell.swift in Sources */,
 				51BB1B1D275AA05D0076D6E8 /* Helpers.swift in Sources */,
+				514828DB275E7C5600371831 /* UIImageView+ext.swift in Sources */,
 				51BB1B2A275AA3540076D6E8 /* FavoritesViewController.swift in Sources */,
 				C621CCCA275C0E7500F14A4B /* RequestErrors.swift in Sources */,
 				51BB1B1F275AA05D0076D6E8 /* UIColor+ext.swift in Sources */,

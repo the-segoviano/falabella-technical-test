@@ -20,8 +20,8 @@ class RequestManager {
             case .success(let data):
                 do {
                     let jsonDecoder = JSONDecoder()
-                    let personResponse = try jsonDecoder.decode(FavoritesResponse.self, from: data)
-                    completion(.success(personResponse))
+                    let response = try jsonDecoder.decode(FavoritesResponse.self, from: data)
+                    completion(.success(response))
                 }
                 catch let error {
                     completion(.failure(error))

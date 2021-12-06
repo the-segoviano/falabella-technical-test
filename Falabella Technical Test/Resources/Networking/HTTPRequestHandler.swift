@@ -27,7 +27,6 @@ final class HTTPRequestHandler {
     
     lazy var urlSessionConfiguration: URLSessionConfiguration = {
         let urlSessionConfiguration = URLSessionConfiguration.default
-        urlSessionConfiguration.httpCookieStorage = nil
         urlSessionConfiguration.timeoutIntervalForRequest = timeOut
         urlSessionConfiguration.timeoutIntervalForResource = timeOut
         return urlSessionConfiguration
