@@ -28,47 +28,38 @@ class ProductCell: BaseCollectionViewCell {
         if !product.image.isEmpty {
             imageProduct.setImage(from: product.image)
         }
-        icPlusSquare = getImageByName(withName: "ic_plusSquare")
-        icInternationalSquare = getImageByName(withName: "ic_internationalSquare")
-        icRefurbishedSquare = getImageByName(withName: "ic_refurbishedSquare")
-        icFreeShippingSquare = getImageByName(withName: "ic_freeShippingSquare")
+        
+        var linioPlusLevelName: String = "ic_plusSquare"
+        if product.linioPlusLevel == 0 {
+            linioPlusLevelName = "ic_plus48Square"
+        }
+        icPlusSquare = getImageByName(withName: linioPlusLevelName)
+        
+        var conditionTypeImageName = ""
+        if product.conditionType == "refurbished" {
+            conditionTypeImageName =  "ic_refurbishedSquare"
+        }
+        if product.conditionType == "new" {
+            conditionTypeImageName =  "ic_newSquare"
+        }
+        icRefurbishedSquare = getImageByName(withName: conditionTypeImageName)
+        
         icfavOn = getImageByName(withName: "ic_favOn")
         
-        addSubview(imageProduct)
-        imageProduct.addSubview(icPlusSquare)
-        imageProduct.addSubview(icInternationalSquare)
-        imageProduct.addSubview(icRefurbishedSquare)
-        imageProduct.addSubview(icFreeShippingSquare)
-        imageProduct.addSubview(icfavOn)
+        if product.imported {
+            icInternationalSquare = getImageByName(withName: "ic_internationalSquare")
+        }
+        else{
+            icInternationalSquare = getImageByName(withName: "")
+        }
         
-        NSLayoutConstraint.activate([
-            // example background image
-            imageProduct.widthAnchor.constraint(equalTo: widthAnchor),
-            imageProduct.heightAnchor.constraint(equalTo: heightAnchor),
-            imageProduct.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageProduct.centerYAnchor.constraint(equalTo: centerYAnchor),
-            // Icons
-            icPlusSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icPlusSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icPlusSquare.topAnchor.constraint(equalTo: topAnchor),
-            icPlusSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
-            icInternationalSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icInternationalSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icInternationalSquare.topAnchor.constraint(equalTo: icPlusSquare.bottomAnchor),
-            icInternationalSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
-            icRefurbishedSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icRefurbishedSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icRefurbishedSquare.topAnchor.constraint(equalTo: icInternationalSquare.bottomAnchor),
-            icRefurbishedSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
-            icFreeShippingSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icFreeShippingSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icFreeShippingSquare.topAnchor.constraint(equalTo: icRefurbishedSquare.bottomAnchor),
-            icFreeShippingSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
-            icfavOn.widthAnchor.constraint(equalToConstant: Constants.Value.sizeIconHeart),
-            icfavOn.heightAnchor.constraint(equalToConstant: Constants.Value.sizeIconHeart),
-            icfavOn.topAnchor.constraint(equalTo: topAnchor, constant: Constants.Value.padding),
-            icfavOn.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+        if product.freeShipping {
+            icFreeShippingSquare = getImageByName(withName: "ic_freeShippingSquare")
+        }else{
+            icFreeShippingSquare = getImageByName(withName: "")
+        }
+        
+        setupCellLayout()
         
     } // [END] setupCell
     
@@ -83,5 +74,54 @@ class ProductCell: BaseCollectionViewCell {
         return imageView
     }
     
+    fileprivate func setupCellLayout() {
+        addSubview(imageProduct)
+        imageProduct.addSubview(icPlusSquare)
+        imageProduct.addSubview(icRefurbishedSquare)
+        imageProduct.addSubview(icfavOn)
+        
+        NSLayoutConstraint.activate([
+            // example background image
+            imageProduct.widthAnchor.constraint(equalTo: widthAnchor),
+            imageProduct.heightAnchor.constraint(equalTo: heightAnchor),
+            imageProduct.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageProduct.centerYAnchor.constraint(equalTo: centerYAnchor),
+            icfavOn.widthAnchor.constraint(equalToConstant: Constants.Value.sizeIconHeart),
+            icfavOn.heightAnchor.constraint(equalToConstant: Constants.Value.sizeIconHeart),
+            icfavOn.topAnchor.constraint(equalTo: topAnchor, constant: Constants.Value.padding),
+            icfavOn.trailingAnchor.constraint(equalTo: trailingAnchor),
+            // Icons
+            icPlusSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
+            icPlusSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
+            icPlusSquare.topAnchor.constraint(equalTo: topAnchor),
+            icPlusSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
+            icRefurbishedSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
+            icRefurbishedSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
+            icRefurbishedSquare.topAnchor.constraint(equalTo: icPlusSquare.bottomAnchor),
+            icRefurbishedSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
+        ])
+        
+        if icInternationalSquare.image != nil {
+            imageProduct.addSubview(icInternationalSquare)
+            icInternationalSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage).isActive = true
+            icInternationalSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage).isActive = true
+            icInternationalSquare.topAnchor.constraint(equalTo: icRefurbishedSquare.bottomAnchor).isActive = true
+            icInternationalSquare.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        }
+        
+        if icFreeShippingSquare.image != nil {
+            imageProduct.addSubview(icFreeShippingSquare)
+            icFreeShippingSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage).isActive = true
+            icFreeShippingSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage).isActive = true
+            if icInternationalSquare.image != nil {
+                icFreeShippingSquare.topAnchor.constraint(equalTo: icInternationalSquare.bottomAnchor).isActive = true
+            }
+            else{
+                icFreeShippingSquare.topAnchor.constraint(equalTo: icRefurbishedSquare.bottomAnchor).isActive = true
+            }
+            icFreeShippingSquare.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        }
+        
+    }
     
 }
