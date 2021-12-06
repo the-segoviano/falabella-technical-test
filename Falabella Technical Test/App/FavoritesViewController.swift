@@ -27,33 +27,48 @@ enum FavoriteSections: CaseIterable
 
 class FavoritesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var products: [Product] = []
+    
+    var customUserCollections: [FavoritesResponseElement] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
+        setupCollectionView()
+        
+    }
+    
+    fileprivate func setupCollectionView(){
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: Constants.IdForCell.genericCell)
         self.collectionView.register(HeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Constants.IdForCell.customHeaderCell)
         self.collectionView.register(FooterCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: Constants.IdForCell.customFooterCell)
         self.collectionView.register(ProductCell.self, forCellWithReuseIdentifier: Constants.IdForCell.productCell)
         self.collectionView.register(UserCollectionCell.self, forCellWithReuseIdentifier: Constants.IdForCell.userCollectionCell)
-        
-        
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
         self.collectionView.backgroundColor = .collectionViewBackground
         self.collectionView.showsVerticalScrollIndicator = false
         self.collectionView.alwaysBounceVertical = true
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
     }
     
     
-    /*
-    func fetchCartelera() {
-        RequestManager.fetchCartelera(reference: self) { [weak self] result in
+    func fetchCollections() {
+        RequestManager.fetchCollections(reference: self) { [weak self] result in
+            guard let strongSelf = self else { return }
+            
             switch result {
-            case .success(let carteleraResponse):
+            case .success(let favoritesResponse):
                 DispatchQueue.main.async {
                     
-                    print(" TERMINA carteleraResponse ", carteleraResponse, "\n")
+                    for favorite in favoritesResponse {
+                        strongSelf.customUserCollections.append(favorite)
+                        for (_, p) in favorite.products {
+                            strongSelf.products.append(p)
+                        }
+                    }
+                    
+                    strongSelf.collectionView.reloadData()
                     
                 }
             case .failure(let error):
@@ -61,15 +76,14 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
                     print(" Error Found: ", error.localizedDescription)
                 }
             }
-            
         }
-    }*/
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // fetchCartelera()
+        fetchCollections()
         
     }
     
@@ -123,7 +137,8 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.IdForCell.userCollectionCell, for: indexPath)
             if let cell = cell as? UserCollectionCell {
-                cell.setupCell()
+                let c: FavoritesResponseElement = self.customUserCollections[indexPath.row]
+                cell.setupCell(withCustomUserCollection: c)
                 return cell
             }
             
@@ -131,7 +146,8 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.IdForCell.productCell, for: indexPath)
             if let cell = cell as? ProductCell {
-                cell.setupCell()
+                let p: Product = self.products[indexPath.row]
+                cell.setupCell(withProduct: p)
                 return cell
             }
             
@@ -155,9 +171,9 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch FavoriteSections.getSection(section) {
         case .userCollections:
-            return 5
+            return customUserCollections.count
         case .allCollections:
-            return 15
+            return products.count
         }
     }
     
@@ -188,6 +204,7 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
                 titleLabel.translatesAutoresizingMaskIntoConstraints = false
                 titleLabel.text = Constants.Strings.titleFavSection
                 titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+                titleLabel.textColor = .darkText
                 
                 let addButton: UIButton = UIButton(type: .custom)
                 addButton.translatesAutoresizingMaskIntoConstraints = false
@@ -210,8 +227,9 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             case .allCollections:
                 let titleLabel: UILabel = UILabel()
                 titleLabel.translatesAutoresizingMaskIntoConstraints = false
-                titleLabel.text = "Todos mis favoritos (16)"
+                titleLabel.text = "Todos mis favoritos (\(products.count))"
                 titleLabel.font = CustomFont.getBoldFont(withSize: 16)
+                titleLabel.textColor = .darkText
                 headerView.addSubview(titleLabel)
                 NSLayoutConstraint.activate([
                     titleLabel.heightAnchor.constraint(equalToConstant: 30),
@@ -261,186 +279,6 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
             return CGSize(width: collectionView.frame.width, height: 15.0)
         }
         
-    }
-    
-    
-}
-
-
-
-class ProductCell: BaseCollectionViewCell {
-    
-    var imageProduct: UIImageView!
-    
-    //
-    // MARK: Icons
-    //
-    var icPlusSquare: UIImageView!
-    var icInternationalSquare: UIImageView!
-    var icRefurbishedSquare: UIImageView!
-    var icFreeShippingSquare: UIImageView!
-    var icfavOn: UIImageView!
-    
-    func setupCell() {
-        backgroundColor = .white
-        layer.cornerRadius = Constants.Value.cornerRadius
-        
-        imageProduct = getImageByName(withName: "ex-product", contentMode: .scaleAspectFit)
-        icPlusSquare = getImageByName(withName: "ic_plusSquare")
-        icInternationalSquare = getImageByName(withName: "ic_internationalSquare")
-        icRefurbishedSquare = getImageByName(withName: "ic_refurbishedSquare")
-        icFreeShippingSquare = getImageByName(withName: "ic_freeShippingSquare")
-        icfavOn = getImageByName(withName: "ic_favOn")
-        
-        addSubview(imageProduct)
-        imageProduct.addSubview(icPlusSquare)
-        imageProduct.addSubview(icInternationalSquare)
-        imageProduct.addSubview(icRefurbishedSquare)
-        imageProduct.addSubview(icFreeShippingSquare)
-        imageProduct.addSubview(icfavOn)
-        
-        NSLayoutConstraint.activate([
-            // example background image
-            imageProduct.widthAnchor.constraint(equalTo: widthAnchor),
-            imageProduct.heightAnchor.constraint(equalTo: heightAnchor),
-            imageProduct.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageProduct.centerYAnchor.constraint(equalTo: centerYAnchor),
-            // Icons
-            icPlusSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icPlusSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icPlusSquare.topAnchor.constraint(equalTo: topAnchor),
-            icPlusSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
-            icInternationalSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icInternationalSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icInternationalSquare.topAnchor.constraint(equalTo: icPlusSquare.bottomAnchor),
-            icInternationalSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
-            icRefurbishedSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icRefurbishedSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icRefurbishedSquare.topAnchor.constraint(equalTo: icInternationalSquare.bottomAnchor),
-            icRefurbishedSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
-            icFreeShippingSquare.widthAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icFreeShippingSquare.heightAnchor.constraint(equalToConstant: Constants.Value.sizeProductImage),
-            icFreeShippingSquare.topAnchor.constraint(equalTo: icRefurbishedSquare.bottomAnchor),
-            icFreeShippingSquare.leadingAnchor.constraint(equalTo: leadingAnchor),
-            icfavOn.widthAnchor.constraint(equalToConstant: Constants.Value.sizeIconHeart),
-            icfavOn.heightAnchor.constraint(equalToConstant: Constants.Value.sizeIconHeart),
-            icfavOn.topAnchor.constraint(equalTo: topAnchor, constant: Constants.Value.padding),
-            icfavOn.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
-        
-    } // [END] setupCell
-    
-    fileprivate func getImageByName(withName name: String,
-                                    contentMode: UIView.ContentMode = .scaleAspectFill) -> UIImageView
-    {
-        let imageView: UIImageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = contentMode
-        imageView.image = UIImage(named: name)
-        imageView.clipsToBounds = true
-        return imageView
-    }
-    
-    
-}
-
-
-
-class UserCollectionCell: BaseCollectionViewCell {
-    
-    var imgPreview1: UIImageView!
-    var imgPreview2: UIImageView!
-    var imgPreview3: UIImageView!
-    
-    lazy var nameCollectionLabel: UILabel = {
-        let label: UILabel = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Collection 1"
-        return label
-    }()
-    
-    lazy var totalItemsInCollectionLabel: UILabel = {
-        let label: UILabel = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "11"
-        label.textColor = .pinkishGrey
-        return label
-    }()
-    
-    func setupCell() {
-        backgroundColor = .white
-        layer.cornerRadius = Constants.Value.cornerRadius
-        
-        let containerPreviews: UIView = UIView()
-        containerPreviews.translatesAutoresizingMaskIntoConstraints = false
-        containerPreviews.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        containerPreviews.layer.cornerRadius = Constants.Value.cornerRadius
-        
-        imgPreview1 = getImageByName(withName: "ex-preview")
-        imgPreview2 = getImageByName(withName: "ex-preview")
-        imgPreview3 = getImageByName(withName: "ex-preview")
-        
-        addSubview(containerPreviews)
-        
-        addSubview(nameCollectionLabel)
-        addSubview(totalItemsInCollectionLabel)
-        
-        containerPreviews.addSubview(imgPreview1)
-        containerPreviews.addSubview(imgPreview2)
-        containerPreviews.addSubview(imgPreview3)
-        
-        let wtCell = (contentView.frame.width/2) - 10
-        var sizePreview1:CGFloat = 100
-        var sizePreview2and:CGFloat = 46
-        
-        if wtCell < 174 {
-            sizePreview1 = 85
-            sizePreview2and = 38
-        }
-        
-        NSLayoutConstraint.activate([
-            containerPreviews.widthAnchor.constraint(equalTo: widthAnchor),
-            containerPreviews.heightAnchor.constraint(equalToConstant: 120),
-            containerPreviews.topAnchor.constraint(equalTo: topAnchor),
-            
-            // Labels
-            totalItemsInCollectionLabel.heightAnchor.constraint(equalToConstant: 22),
-            totalItemsInCollectionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            totalItemsInCollectionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            nameCollectionLabel.heightAnchor.constraint(equalToConstant: 24),
-            nameCollectionLabel.bottomAnchor.constraint(equalTo: totalItemsInCollectionLabel.topAnchor),
-            nameCollectionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            
-            // Previews images
-            imgPreview1.widthAnchor.constraint(equalToConstant: sizePreview1),
-            imgPreview1.heightAnchor.constraint(equalToConstant: sizePreview1),
-            imgPreview1.topAnchor.constraint(equalTo: containerPreviews.topAnchor, constant: 8),
-            imgPreview1.leadingAnchor.constraint(equalTo: containerPreviews.leadingAnchor, constant: 8),
-            
-            imgPreview2.widthAnchor.constraint(equalToConstant: sizePreview2and),
-            imgPreview2.heightAnchor.constraint(equalToConstant: sizePreview2and),
-            imgPreview2.topAnchor.constraint(equalTo: containerPreviews.topAnchor, constant: 8),
-            imgPreview2.trailingAnchor.constraint(equalTo: containerPreviews.trailingAnchor, constant: -8),
-            
-            imgPreview3.widthAnchor.constraint(equalToConstant: sizePreview2and),
-            imgPreview3.heightAnchor.constraint(equalToConstant: sizePreview2and),
-            imgPreview3.topAnchor.constraint(equalTo: imgPreview2.bottomAnchor, constant: 8),
-            imgPreview3.trailingAnchor.constraint(equalTo: containerPreviews.trailingAnchor, constant: -8)
-            
-        ])
-        
-    } // [END] setupCell
-    
-    fileprivate func getImageByName(withName name: String,
-                                    contentMode: UIView.ContentMode = .scaleAspectFill) -> UIImageView
-    {
-        let imageView: UIImageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = contentMode
-        imageView.image = UIImage(named: name)
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 5
-        return imageView
     }
     
 }
