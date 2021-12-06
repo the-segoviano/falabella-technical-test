@@ -29,20 +29,53 @@ class UserCollectionCell: BaseCollectionViewCell {
     }()
     
     func setupCell(withCustomUserCollection customUserCollection: FavoritesResponseElement) {
-        
-        nameCollectionLabel.text = customUserCollection.name
-        
         backgroundColor = .white
         layer.cornerRadius = Constants.Value.cornerRadius
         
+        nameCollectionLabel.text = customUserCollection.name
+        totalItemsInCollectionLabel.text = "\(customUserCollection.products.count)"
+        imgPreview1 = getImageByName(withName: "ex-preview")
+        imgPreview2 = getImageByName(withName: "ex-preview")
+        imgPreview3 = getImageByName(withName: "ex-preview")
+        var i: Int = 0
+        for p in customUserCollection.products {
+            if i == 0 {
+                imgPreview1.setImage(from: p.value.image)
+            }
+            if i == 1 {
+                imgPreview2.setImage(from: p.value.image)
+            }
+            if i == 2 {
+                imgPreview3.setImage(from: p.value.image)
+            }
+            i += 1
+            if i == 3 {
+                break
+            }
+        }
+        
+        setupCellLayout()
+        
+    } // [END] setupCell
+    
+    fileprivate func getImageByName(withName name: String,
+                                    contentMode: UIView.ContentMode = .scaleAspectFill) -> UIImageView
+    {
+        let imageView: UIImageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = contentMode
+        imageView.image = UIImage(named: name)
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 5
+        return imageView
+    }
+    
+    
+    fileprivate func setupCellLayout() {
         let containerPreviews: UIView = UIView()
         containerPreviews.translatesAutoresizingMaskIntoConstraints = false
         containerPreviews.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         containerPreviews.layer.cornerRadius = Constants.Value.cornerRadius
-        
-        imgPreview1 = getImageByName(withName: "ex-preview")
-        imgPreview2 = getImageByName(withName: "ex-preview")
-        imgPreview3 = getImageByName(withName: "ex-preview")
         
         addSubview(containerPreviews)
         addSubview(nameCollectionLabel)
@@ -91,19 +124,7 @@ class UserCollectionCell: BaseCollectionViewCell {
             imgPreview3.trailingAnchor.constraint(equalTo: containerPreviews.trailingAnchor, constant: -8)
             
         ])
-        
-    } // [END] setupCell
-    
-    fileprivate func getImageByName(withName name: String,
-                                    contentMode: UIView.ContentMode = .scaleAspectFill) -> UIImageView
-    {
-        let imageView: UIImageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = contentMode
-        imageView.image = UIImage(named: name)
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 5
-        return imageView
     }
+    
     
 }
