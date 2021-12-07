@@ -10,6 +10,7 @@
 		514828D7275C3D1600371831 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514828D6275C3D1600371831 /* ProductCell.swift */; };
 		514828D9275C3D7600371831 /* UserCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514828D8275C3D7600371831 /* UserCollectionCell.swift */; };
 		514828DB275E7C5600371831 /* UIImageView+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514828DA275E7C5600371831 /* UIImageView+ext.swift */; };
+		514828DD275EC8E600371831 /* LoaderIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514828DC275EC8E600371831 /* LoaderIndicator.swift */; };
 		51BB1B1D275AA05D0076D6E8 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B0E275AA05D0076D6E8 /* Helpers.swift */; };
 		51BB1B1E275AA05D0076D6E8 /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B10275AA05D0076D6E8 /* String+ext.swift */; };
 		51BB1B1F275AA05D0076D6E8 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B11275AA05D0076D6E8 /* UIColor+ext.swift */; };
@@ -43,6 +44,7 @@
 		514828D6275C3D1600371831 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		514828D8275C3D7600371831 /* UserCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionCell.swift; sourceTree = "<group>"; };
 		514828DA275E7C5600371831 /* UIImageView+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ext.swift"; sourceTree = "<group>"; };
+		514828DC275EC8E600371831 /* LoaderIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderIndicator.swift; sourceTree = "<group>"; };
 		51BB1B0E275AA05D0076D6E8 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		51BB1B10275AA05D0076D6E8 /* String+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
 		51BB1B11275AA05D0076D6E8 /* UIColor+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				51BB1B17275AA05D0076D6E8 /* CustomTextField.swift */,
 				51BB1B18275AA05D0076D6E8 /* CustomFont.swift */,
 				51BB1B19275AA05D0076D6E8 /* BaseButton.swift */,
+				514828DC275EC8E600371831 /* LoaderIndicator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				C621CCCA275C0E7500F14A4B /* RequestErrors.swift in Sources */,
 				51BB1B1F275AA05D0076D6E8 /* UIColor+ext.swift in Sources */,
 				C621CCCC275C0E7500F14A4B /* HTTPRequestHandler.swift in Sources */,
+				514828DD275EC8E600371831 /* LoaderIndicator.swift in Sources */,
 				51BB1B25275AA05D0076D6E8 /* CustomFont.swift in Sources */,
 				51BB1B23275AA05D0076D6E8 /* Alert.swift in Sources */,
 				51BB1B22275AA05D0076D6E8 /* Constants.swift in Sources */,
@@ -446,8 +450,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VY93XGV7U7;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Falabella Technical Test/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -456,6 +461,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lsegoviano.dev.Falabella-Technical-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -466,8 +472,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VY93XGV7U7;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Falabella Technical Test/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -476,6 +483,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lsegoviano.dev.Falabella-Technical-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

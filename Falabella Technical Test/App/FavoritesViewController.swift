@@ -56,24 +56,21 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
     func fetchCollections() {
         RequestManager.fetchCollections(reference: self) { [weak self] result in
             guard let strongSelf = self else { return }
-            
             switch result {
             case .success(let favoritesResponse):
                 DispatchQueue.main.async {
-                    
                     for favorite in favoritesResponse {
                         strongSelf.customUserCollections.append(favorite)
                         for (_, p) in favorite.products {
                             strongSelf.products.append(p)
                         }
                     }
-                    
                     strongSelf.collectionView.reloadData()
-                    
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    print(" Error Found: ", error.localizedDescription)
+                    Alert.showSomethingGetsWrongAlert(on: strongSelf,
+                                                      withMessage: error.localizedDescription)
                 }
             }
         }
@@ -178,14 +175,6 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    //
-    // MARK: Did Select Item
-    //
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(" indexPath ", indexPath)
-    }
-    
-    
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -261,7 +250,7 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
         case .userCollections:
             return CGSize(width: collectionView.frame.width, height: 50.0)
         case .allCollections:
-            return CGSize(width: collectionView.frame.width, height: 40.0)
+            return CGSize(width: collectionView.frame.width, height: 45.0)
         }
         
     }

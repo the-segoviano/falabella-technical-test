@@ -43,6 +43,9 @@ final class HTTPRequestHandler {
                           reference viewController: UIViewController,
                           completion: @escaping (Result<Data, Error>) -> ()) {
         // print(" url ", url)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        LoaderIndicator.sharedInstance.show(reference: viewController, yOrigin: 200.0)
+        
         var request: URLRequest  = URLRequest(url: url)
         request.httpMethod = method.rawValue
         var headers = request.allHTTPHeaderFields ?? [:]
@@ -52,7 +55,10 @@ final class HTTPRequestHandler {
         
         let session: URLSession = URLSession(configuration: urlSessionConfiguration)
         let task = session.dataTask(with: request) { data, response, error in
-            
+            DispatchQueue.main.async {
+                LoaderIndicator.sharedInstance.hide()
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
             guard error == nil else {
                 completion(.failure(error!))
                 return

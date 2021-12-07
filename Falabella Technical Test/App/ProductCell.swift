@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum conditionTypeProduct: String {
+    case refurbished, new
+}
+
 class ProductCell: BaseCollectionViewCell {
     
     var imageProduct: UIImageView!
@@ -24,39 +28,36 @@ class ProductCell: BaseCollectionViewCell {
         backgroundColor = .white
         layer.cornerRadius = Constants.Value.cornerRadius
         
-        imageProduct = getImageByName(withName: "ex-product", contentMode: .scaleAspectFit)
+        imageProduct = getImageByName(withName: Constants.ImageName.exProduct, contentMode: .scaleAspectFit)
         if !product.image.isEmpty {
             imageProduct.setImage(from: product.image)
         }
         
-        var linioPlusLevelName: String = "ic_plusSquare"
+        var linioPlusLevelName: String = Constants.ImageName.icPlusSquare
         if product.linioPlusLevel == 0 {
-            linioPlusLevelName = "ic_plus48Square"
+            linioPlusLevelName = Constants.ImageName.icPlus48Square
         }
         icPlusSquare = getImageByName(withName: linioPlusLevelName)
         
-        var conditionTypeImageName = ""
-        if product.conditionType == "refurbished" {
-            conditionTypeImageName =  "ic_refurbishedSquare"
+        var conditionTypeImageName: String = ""
+        if product.conditionType == conditionTypeProduct.refurbished.rawValue {
+            conditionTypeImageName = Constants.ImageName.icRefurbishedSquare
         }
-        if product.conditionType == "new" {
-            conditionTypeImageName =  "ic_newSquare"
+        if product.conditionType == conditionTypeProduct.new.rawValue {
+            conditionTypeImageName = Constants.ImageName.icNewSquare
         }
         icRefurbishedSquare = getImageByName(withName: conditionTypeImageName)
         
-        icfavOn = getImageByName(withName: "ic_favOn")
+        icfavOn = getImageByName(withName: Constants.ImageName.icFavOn)
         
+        icInternationalSquare = getImageByName(withName: "")
         if product.imported {
-            icInternationalSquare = getImageByName(withName: "ic_internationalSquare")
-        }
-        else{
-            icInternationalSquare = getImageByName(withName: "")
+            icInternationalSquare = getImageByName(withName: Constants.ImageName.icInternationalSquare)
         }
         
+        icFreeShippingSquare = getImageByName(withName: "")
         if product.freeShipping {
-            icFreeShippingSquare = getImageByName(withName: "ic_freeShippingSquare")
-        }else{
-            icFreeShippingSquare = getImageByName(withName: "")
+            icFreeShippingSquare = getImageByName(withName: Constants.ImageName.icFreeShippingSquare)
         }
         
         setupCellLayout()
@@ -81,7 +82,6 @@ class ProductCell: BaseCollectionViewCell {
         imageProduct.addSubview(icfavOn)
         
         NSLayoutConstraint.activate([
-            // example background image
             imageProduct.widthAnchor.constraint(equalTo: widthAnchor),
             imageProduct.heightAnchor.constraint(equalTo: heightAnchor),
             imageProduct.centerXAnchor.constraint(equalTo: centerXAnchor),

@@ -32,6 +32,15 @@ struct Constants {
     
     struct ImageName {
         static let add: String = "add"
+        static let exProduct: String = "ex-product"
+        static let exPreview: String = "ex-preview"
+        static let icPlusSquare: String = "ic_plusSquare"
+        static let icPlus48Square: String = "ic_plus48Square"
+        static let icRefurbishedSquare: String = "ic_refurbishedSquare"
+        static let icNewSquare: String = "ic_newSquare"
+        static let icFavOn: String = "ic_favOn"
+        static let icInternationalSquare: String = "ic_internationalSquare"
+        static let icFreeShippingSquare: String = "ic_freeShippingSquare"
     }
     
     struct IdForCell {

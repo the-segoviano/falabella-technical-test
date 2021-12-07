@@ -15,32 +15,10 @@ class Alert {
         DispatchQueue.main.async { vc.present(alert, animated: true) }
     }
     
-    static func showIncompleteFormAlert(on vc: UIViewController) {
-        showBasicAlert(on: vc, with: "Woops", message: "Please enter all information to log in.")
-    }
-    
-    static func showIncompleteFormSignUpAlert(on vc: UIViewController) {
-        showBasicAlert(on: vc, with: "Woops", message: "Please enter all information to create a new account.")
-    }
-    
-    static func showInvalidEmailAlert(on vc: UIViewController) {
-        showBasicAlert(on: vc, with: "Invalid Email", message: "Please use a correct email.")
-    }
-    
-    static func showInvalidPassword(on vc: UIViewController) {
-        showBasicAlert(on: vc, with: "Invalid Password", message: "Use at least 6 characters.")
-    }
-    
-    static func showInvalidPasswordConfirmation(on vc: UIViewController) {
-        showBasicAlert(on: vc, with: "Invalid Password", message: "The passwords fields must match.")
-    }
-    
-    static func showUnableToRetrieveDataAlert(on vc: UIViewController) {
-        showBasicAlert(on: vc, with: "Unable to Retrieve Data", message: "Please try again.")
-    }
-    
-    static func UseralreadyExistsAlert(on vc: UIViewController) {
-        showBasicAlert(on: vc, with: "User already exists", message: "Please try with different email.")
+    static func showSomethingGetsWrongAlert(on vc: UIViewController,
+                                            withMessage message: String)
+    {
+        showBasicAlert(on: vc, with: "Something Gets Wrong", message: message)
     }
     
     
